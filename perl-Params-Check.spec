@@ -11,6 +11,7 @@ Group:		Development/Perl
 Summary:	A generic input parsing/checking mechanism
 Source0:	http://search.cpan.org/CPAN/authors/id/K/KA/KANE/%{module}-%{version}.tar.bz2
 Url:		http://search.cpan.org/dist/%{module}/
+BuildRoot:	%{_tmppath}/%{name}-%{version}
 %if %{mdkversion} < 1010
 BuildRequires:	perl-devel
 %endif
