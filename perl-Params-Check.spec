@@ -1,22 +1,22 @@
-%define	module	Params-Check
-%define	name	perl-%{module}
-%define version 0.26
-%define release %mkrel 4
+%define	upstream_name	 Params-Check
+%define upstream_version 0.26
 
-Name:		%{name}
-Version:	%{version}
-Release:	%{release}
-License:	GPL or Artistic
-Group:		Development/Perl
+Name:       perl-%{upstream_name}
+Version:    %perl_convert_version %{upstream_version}
+Release:    %mkrel 1
+
 Summary:	A generic input parsing/checking mechanism
-Source0:	http://search.cpan.org/CPAN/authors/id/K/KA/KANE/%{module}-%{version}.tar.bz2
-Url:		http://search.cpan.org/dist/%{module}/
-BuildRoot:	%{_tmppath}/%{name}-%{version}
+License:	GPL+ or Artistic
+Group:		Development/Perl
+Url:		http://search.cpan.org/dist/%{upstream_name}/
+Source0:	http://search.cpan.org/CPAN/authors/id/K/KA/KANE/%{upstream_name}-%{upstream_version}.tar.bz2
+
 %if %{mdkversion} < 1010
 BuildRequires:	perl-devel
 %endif
 BuildRequires:  perl-Locale-Maketext-Simple
 BuildArch:	noarch
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}
 
 %description
 Params::Check is a generic input parsing/checking mechanism.
@@ -33,9 +33,8 @@ Params::Check can do the following things for you:
   even subroutines
 * Enforce type integrity if required
 
-
 %prep
-%setup -q -n %{module}-%{version}
+%setup -q -n %{upstream_name}-%{upstream_version}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS=vendor
@@ -56,5 +55,3 @@ rm -rf %{buildroot}
 %doc CHANGES README
 %{perl_vendorlib}/Params
 %{_mandir}/*/*
-
-
